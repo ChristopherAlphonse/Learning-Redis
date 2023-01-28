@@ -18,7 +18,7 @@ export const getCache = async (key) => {
     const cacheData = await redis.get(key);
     return cacheData;
   } catch (err) {
-    console.log(` getCache Error: ${err}`);
+    console.log(`getCache Error: ${err}`);
     return null;
   }
 };
@@ -27,17 +27,17 @@ export const getCache = async (key) => {
 export const setCache = (key, data, ttl = REDIS_TTL) => {
   try {
     redis.set(key, JSON.stringify(data), "EX", ttl);
-  } catch (error) {
+  } catch (err) {
     console.log(`setCache Error: ${err}`);
     return null;
   }
 };
 
 //Remove given Redis cache key
-export const removeCache = () => {
+export const removeCache = (key) => {
   try {
     redis.del(key);
-  } catch (error) {
+  } catch (err) {
     console.log(`removeCache Error: ${err}`);
     return null;
   }
